@@ -1,8 +1,61 @@
-# React + Vite
+# Notes with React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple note-taking application built using React. It allows users to create, edit, and delete notes.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Add new notes
+- Edit existing notes
+- Delete notes
+- View list of notes
+
+## Installation
+
+1. Clone the repository:
+
+    ```bash
+    git clone <https://github.com/MohdMinhal/mohdminhal.github.io.git>
+    ```
+
+2. Navigate into the project directory:
+
+    ```bash
+    cd Notes-with-React
+    ```
+
+3. Install dependencies:
+
+    ```bash
+    npm install
+    ```
+
+4. Run the development server:
+
+    ```bash
+    npm start
+    ```
+
+5. Open your browser and visit `http://localhost:****` to view the application.
+
+## Usage
+
+- Click on "Add Note" to create a new note.
+- Click on an existing note to edit it.
+- Double-click on a note to delete it.
+
+## Technologies Used
+
+- React
+- JavaScript
+- HTML
+- CSS
+
+## Contributing
+
+Contributions are welcome! If you'd like to contribute to this project, please fork the repository and submit a pull request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
