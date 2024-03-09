@@ -13,7 +13,7 @@ This is a simple note-taking application built using React. It allows users to c
 1. Clone the repository:
 
     ```bash
-    git clone <repository-url>
+    git clone <https://github.com/MohdMinhal/Notes-with-React.git>
     ```
 
 2. Navigate into the project directory:
@@ -34,7 +34,7 @@ This is a simple note-taking application built using React. It allows users to c
     npm start
     ```
 
-5. Open your browser and visit `http://localhost:3000` to view the application.
+5. Open your browser and visit `http://localhost:****` to view the application.
 
 ## Usage
 
