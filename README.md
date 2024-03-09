@@ -19,7 +19,7 @@ This is a simple note-taking application built using React. It allows users to c
 2. Navigate into the project directory:
 
     ```bash
-    cd simple-note-taking-app
+    cd Notes-with-react
     ```
 
 3. Install dependencies:
