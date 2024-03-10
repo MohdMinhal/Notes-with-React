@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 function Notes() {
   const [notes, setNotes] = useState([]);
-  const [activeNote, setActiveNote] = useState(null);
+  const [activeNoteId, setActiveNoteId] = useState(null);
   const [isNotePreviewVisible, setNotePreviewVisibility] = useState(false);
 
   useEffect(() => {
@@ -10,37 +10,35 @@ function Notes() {
   }, []);
 
   const refreshNotes = () => {
-    const notesFromStorage = JSON.parse(
-      localStorage.getItem("notesapp-notes") || "[]"
-    );
+    const notesFromStorage = JSON.parse(localStorage.getItem("notesapp-notes") || "[]");
     setNotes(notesFromStorage);
     if (notesFromStorage.length > 0) {
-      setActiveNote(notesFromStorage[0]);
+      setActiveNoteId(notesFromStorage[0]?.id); // Set the active note ID to the first note's ID
     }
   };
 
-  const saveNote = (noteToSave) => {
-    const updatedNotes = notes.map((note) =>
-      note.id === noteToSave.id ? noteToSave : note
-    );
-    if (!notes.find((note) => note.id === noteToSave.id)) {
-      noteToSave.updated = new Date().toISOString();
-      updatedNotes.push(noteToSave);
+  const saveNote = (updatedNote) => {
+    const updatedNotes = [...notes];
+    const index = updatedNotes.findIndex(note => note.id === updatedNote.id);
+    if (index !== -1) {
+      updatedNotes[index] = updatedNote;
+    } else {
+      updatedNotes.push(updatedNote);
     }
     localStorage.setItem("notesapp-notes", JSON.stringify(updatedNotes));
-    refreshNotes();
+    setNotes(updatedNotes);
   };
 
   const deleteNote = (id) => {
     const updatedNotes = notes.filter((note) => note.id !== id);
     localStorage.setItem("notesapp-notes", JSON.stringify(updatedNotes));
-    refreshNotes();
-    window.location.reload();
+    setNotes(updatedNotes);
+    setActiveNoteId(null);
+    setNotePreviewVisibility(false);
   };
 
   const handleNoteSelect = (id) => {
-    const selectedNote = notes.find((note) => note.id === id);
-    setActiveNote(selectedNote);
+    setActiveNoteId(id);
     setNotePreviewVisibility(true);
   };
 
@@ -54,23 +52,24 @@ function Notes() {
   };
 
   const handleNoteEdit = (updatedTitle, updatedBody) => {
-    if (activeNote) {
-      saveNote({
-        ...activeNote,
-        title: updatedTitle,
-        body: updatedBody,
-      });
+    const activeNoteIndex = notes.findIndex(note => note.id === activeNoteId);
+    if (activeNoteIndex !== -1) {
+      const updatedNote = { ...notes[activeNoteIndex], title: updatedTitle, body: updatedBody };
+      saveNote(updatedNote);
     }
   };
 
   const handleNoteDelete = () => {
-    if (activeNote) {
-      deleteNote(activeNote.id);
+    if (activeNoteId) {
+      deleteNote(activeNoteId);
     }
   };
 
+  const activeNote = notes.find(note => note.id === activeNoteId);
+
   return (
     <div className="notes">
+      {/* Sidebar component */}
       <div className="notes__sidebar">
         <button className="notes__add" type="button" onClick={handleNoteAdd}>
           Add Note
@@ -80,12 +79,10 @@ function Notes() {
             <div
               key={note.id}
               className={`notes__list-item ${
-                activeNote && activeNote.id === note.id
-                  ? "notes__list-item--selected"
-                  : ""
+                activeNoteId === note.id ? "notes__list-item--selected" : ""
               }`}
               onClick={() => handleNoteSelect(note.id)}
-              onDoubleClick={handleNoteDelete}
+              onDoubleClick={() => handleNoteDelete(note.id)}
             >
               <div className="notes__small-title">{note.title}</div>
               <div className="notes__small-updated">
@@ -98,6 +95,7 @@ function Notes() {
           ))}
         </div>
       </div>
+      {/* Preview component */}
       <div
         className="notes__preview"
         style={{ visibility: isNotePreviewVisible ? "visible" : "hidden" }}
