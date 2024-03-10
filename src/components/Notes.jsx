@@ -47,6 +47,7 @@ function Notes() {
       id: Math.floor(Math.random() * 1000000),
       title: "",
       body: "",
+      updated: new Date().toISOString()
     };
     saveNote(newNote);
   };
