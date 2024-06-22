@@ -1,10 +1,10 @@
 # Notes with React
 
-This is a simple note-taking application built using React. It allows users to create, edit, and delete notes.
+Notes with React is a user-friendly note-taking application built using React, offering essential functionalities like creating, editing, and deleting notes.
 
 ## Features
 
-- Add new notes
+- Create new notes
 - Edit existing notes
 - Delete notes
 - View list of notes
@@ -14,10 +14,10 @@ This is a simple note-taking application built using React. It allows users to c
 1. Clone the repository:
 
     ```bash
-    git clone <https://github.com/MohdMinhal/mohdminhal.github.io.git>
+    git clone https://github.com/MohdMinhal/mohdminhal.github.io.git
     ```
 
-2. Navigate into the project directory:
+2. Navigate to the project directory:
 
     ```bash
     cd Notes-with-React
@@ -29,7 +29,7 @@ This is a simple note-taking application built using React. It allows users to c
     npm install
     ```
 
-4. Run the development server:
+4. Start the development server:
 
     ```bash
     npm start
@@ -52,10 +52,8 @@ This is a simple note-taking application built using React. It allows users to c
 
 ## Contributing
 
-Contributions are welcome! If you'd like to contribute to this project, please fork the repository and submit a pull request.
+Contributions are welcome! Fork the repository and submit a pull request to contribute.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
